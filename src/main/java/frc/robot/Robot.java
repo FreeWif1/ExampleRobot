@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.driveTrainSS;
 
 
 /**
@@ -29,8 +30,8 @@ public class Robot extends TimedRobot {
   public static WPI_TalonSRX leftMotor2 = new WPI_TalonSRX(RobotMap.leftMotor2);
   public static WPI_TalonSRX rightMotor1 = new WPI_TalonSRX(RobotMap.rightMotor1);
   public static WPI_TalonSRX rightMotor2 = new WPI_TalonSRX(RobotMap.rightMotor2);
+  public static driveTrainSS m_driveTrainSS;
 
-  double x = 999999999;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -40,6 +41,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    WPI_TalonSRX leftMotor1 = new WPI_TalonSRX(RobotMap.leftMotor1);
+    WPI_TalonSRX leftMotor2 = new WPI_TalonSRX(RobotMap.leftMotor2);   
+    WPI_TalonSRX rightMotor1 = new WPI_TalonSRX(RobotMap.rightMotor1);
+    WPI_TalonSRX rightMotor2 = new WPI_TalonSRX(RobotMap.rightMotor2);
+    m_driveTrainSS = new driveTrainSS();
     m_oi = new OI();
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -56,7 +62,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("x", x++);
+    
   }
 
   /**
